@@ -23,16 +23,16 @@ public class Machine {
         }
     }
 
-    // Vérifier si la machine tombe en panne
+    //Vérifier si la machine tombe en panne
     public boolean estEnPanne() {
         Random rand = new Random();
         double valeurAleatoire = rand.nextDouble();
         return valeurAleatoire <= chancePanne;
     }
 
-    // Réparer machine
+    //Réparer une machine
     public void reparerMachine() {
-        System.out.println("La machine " + nom + " est en panne et est en réparation...");
+        System.out.println("La machine " + nom + " est en panne et en cours de réparation...");
         try {
             Thread.sleep((long)((5 + Math.random() * 6) * 1000));
         } catch (InterruptedException e) {

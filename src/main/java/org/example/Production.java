@@ -2,43 +2,48 @@ package org.example;
 
 public class Production {
     public static void main(String[] args) {
-        Machine machineTete = new Machine("MT", 2.0, 0.25);
-        Machine machineJupe = new Machine("MJ", 3.0, 0.25);
-        Machine machineAxe = new Machine("MA", 2.5, 0.25);
-        Machine machinePrincipale = new Machine("MP", 1.0, 0.25);
+        long debutSimulation = System.currentTimeMillis();
+
+        Machine mTete = new Machine("MT", 2.0, 0.25);
+        Machine mJupe = new Machine("MJ", 3.0, 0.25);
+        Machine mAxe = new Machine("MA", 2.5, 0.25);
+        Machine mPrincipale = new Machine("MP", 1.0, 0.25);
 
         int pistonsAssembles = 0;
         while (pistonsAssembles < 100) {
-            // Fabrication d'une pièce de chaque type
             Piece tete = new Piece("Tête");
             Piece jupe = new Piece("Jupe");
             Piece axe = new Piece("Axe");
 
-            // Usinage des pièces
-            machineTete.usinerPiece(tete);
-            machineJupe.usinerPiece(jupe);
-            machineAxe.usinerPiece(axe);
+            mTete.usinerPiece(tete);
+            mJupe.usinerPiece(jupe);
+            mAxe.usinerPiece(axe);
 
-            // Vérification des pannes et réparations
-            if (machineTete.estEnPanne()) {
-                machineTete.reparerMachine();
+            if (mTete.estEnPanne()) {
+                mTete.reparerMachine();
             }
-            if (machineJupe.estEnPanne()) {
-                machineJupe.reparerMachine();
+            if (mJupe.estEnPanne()) {
+                mJupe.reparerMachine();
             }
-            if (machineAxe.estEnPanne()) {
-                machineAxe.reparerMachine();
+            if (mAxe.estEnPanne()) {
+                mAxe.reparerMachine();
+            }
+            if (mPrincipale.estEnPanne()) {
+                mPrincipale.reparerMachine();
             }
 
-            // Assemblage du piston
-            machinePrincipale.usinerPiece(tete);
-            machinePrincipale.usinerPiece(jupe);
-            machinePrincipale.usinerPiece(axe);
+            mPrincipale.usinerPiece(tete);
+            mPrincipale.usinerPiece(jupe);
+            mPrincipale.usinerPiece(axe);
 
-            System.out.println("Piston(s) assemblé(s) " + (pistonsAssembles + 1));
+            System.out.println("Piston assemblé " + (pistonsAssembles + 1));
             pistonsAssembles++;
         }
 
-        System.out.println("Les 100 pistons ont été assemblés avec succès!.");
+        long finSimulation = System.currentTimeMillis();
+        long tempsTotal = finSimulation - debutSimulation;
+        double tempsTotalEnMinutes = tempsTotal / 60000.0;
+
+        System.out.println("Les 100 pistons ont été assemblés en " + tempsTotalEnMinutes + " minutes.");
     }
 }
