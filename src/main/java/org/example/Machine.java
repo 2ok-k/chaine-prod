@@ -1,45 +1,43 @@
 package org.example;
 
+import java.util.Random;
+
 public class Machine {
-    private String nom;
-    private double tempsReparation;
-    private double tauxPanne;
-    private boolean enMarche;
+    String nom;
+    double tempsUsinage;
+    double chancePanne;
 
-    public Machine(String nom, double tempsReparation, double tauxPanne) {
+    public Machine(String nom, double tempsUsinage, double chancePanne) {
         this.nom = nom;
-        this.tempsReparation = tempsReparation;
-        this.tauxPanne = tauxPanne;
-        this.enMarche = true;
+        this.tempsUsinage = tempsUsinage;
+        this.chancePanne = chancePanne;
     }
 
-    public String getNom() {
-        return nom;
+    // Usiner une pièce
+    public void usinerPiece(Piece piece) {
+        System.out.println("La machine " + nom + " usine une pièce de type " + piece.type);
+        try {
+            Thread.sleep((long)(tempsUsinage * 1000));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
-    public double getTempsReparation() {
-        return tempsReparation;
+    // Vérifier si la machine tombe en panne
+    public boolean estEnPanne() {
+        Random rand = new Random();
+        double valeurAleatoire = rand.nextDouble();
+        return valeurAleatoire <= chancePanne;
     }
 
-    public double getTauxPanne() {
-        return tauxPanne;
-    }
-
-    public boolean estEnMarche() {
-        return enMarche;
-    }
-
-    public void setEnMarche(boolean enMarche) {
-        this.enMarche = enMarche;
-    }
-
-    public void effectuerMaintenance() {
-        // Simuler la maintenance de la machine
-        enMarche = true;
-    }
-
-    public void tomberEnPanne() {
-        // Simuler une panne de la machine
-        enMarche = false;
+    // Réparer machine
+    public void reparerMachine() {
+        System.out.println("La machine " + nom + " est en panne et est en réparation...");
+        try {
+            Thread.sleep((long)((5 + Math.random() * 6) * 1000));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("La machine " + nom + " a été réparée.");
     }
 }

@@ -1,25 +1,17 @@
 package org.example;
 
 public class Piece {
-    private String nom;
-    private double tempsUsinage;
-    private double tauxPanne;
+    String type;
 
-    public Piece(String nom, double tempsUsinage, double tauxPanne) {
-        this.nom = nom;
-        this.tempsUsinage = tempsUsinage;
-        this.tauxPanne = tauxPanne;
+    public Piece(String type) {
+        this.type = type;
     }
 
-    public String getNom() {
-        return nom;
+    public String getType() {
+        return type;
     }
 
-    public double getTempsUsinage() {
-        return tempsUsinage;
-    }
-
-    public double getTauxPanne() {
-        return tauxPanne;
+    public void setType(String type) {
+        this.type = type;
     }
 }
